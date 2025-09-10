@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#interactive-calculator" class="md-skip">
+        <a href="#interactive-normal-distribution-simulator" class="md-skip">
           Skip to content
         </a>
       
@@ -585,7 +585,7 @@
 
 
 
-<h1 id="interactive-calculator">Interactive Calculator<a class="headerlink" href="#interactive-calculator" title="Permanent link">&para;</a></h1>
+<h1 id="interactive-normal-distribution-simulator">Interactive Normal Distribution Simulator<a class="headerlink" href="#interactive-normal-distribution-simulator" title="Permanent link">&para;</a></h1>
 <style>
 input, button {
     padding: 0.5em;
@@ -602,15 +602,59 @@ button {
 button:hover {
     background-color: #45a049;
 }
+#plot {
+    margin-top: 1em;
+}
 </style>
 
-<p><py-script></p>
-<h1 id="your-python-code-here">Your Python code here<a class="headerlink" href="#your-python-code-here" title="Permanent link">&para;</a></h1>
+<!-- PyScript setup -->
+<p><py-script>
+import matplotlib.pyplot as plt
+import numpy as np
+from pyscript import Element, display</p>
+<h1 id="global-figure-and-axes">Global figure and axes<a class="headerlink" href="#global-figure-and-axes" title="Permanent link">&para;</a></h1>
+<p>fig, ax = plt.subplots(figsize=(6,3))
+plt.tight_layout()</p>
+<p>def plot_distribution(*args):
+    # Clear previous plot
+    ax.clear()</p>
+<div class="codehilite"><pre><span></span><code><span class="gh">#</span> Get user inputs
+mu = float(Element(&quot;mu&quot;).value)
+sigma2 = float(Element(&quot;sigma2&quot;).value)
+sigma = np.sqrt(sigma2)
+
+<span class="gh">#</span> Create x values
+x = np.linspace(mu - 4*sigma, mu + 4*sigma, 500)
+y = (1/(sigma * np.sqrt(2*np.pi))) <span class="gs">* np.exp(-0.5 *</span> ((x - mu)/sigma)**2)
+
+<span class="gh">#</span> Plot distribution
+ax.plot(x, y, label=f&#39;N({mu}, {sigma2})&#39;)
+ax.fill_between(x, y, alpha=0.2)
+ax.legend()
+display(fig, target=&quot;plot&quot;)
+</code></pre></div>
+
+<p>def generate_random(*args):
+    mu = float(Element("mu").value)
+    sigma2 = float(Element("sigma2").value)
+    sigma = np.sqrt(sigma2)</p>
+<div class="codehilite"><pre><span></span><code>#<span class="w"> </span><span class="nv">Generate</span><span class="w"> </span><span class="k">random</span><span class="w"> </span><span class="nv">sample</span>
+<span class="nv">sample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">np</span>.<span class="k">random</span>.<span class="nv">normal</span><span class="ss">(</span><span class="nv">mu</span>,<span class="w"> </span><span class="nv">sigma</span><span class="ss">)</span>
+<span class="nv">Element</span><span class="ss">(</span><span class="s2">&quot;sample&quot;</span><span class="ss">)</span>.<span class="nv">write</span><span class="ss">(</span><span class="nv">f</span><span class="s2">&quot;{sample:.4f}&quot;</span><span class="ss">)</span>
+</code></pre></div>
+
 <p></py-script></p>
-<p><input id="num1" type="number" placeholder="Enter first number">
-<input id="num2" type="number" placeholder="Enter second number">
-<button py-click="calculate">Add</button></p>
-<p>Result: <span id="result"></span></p>
+<!-- Inputs and buttons -->
+<div>
+    <label>μ: <input id="mu" type="number" value="0"></label>
+    <label>σ²: <input id="sigma2" type="number" value="1" min="0"></label>
+    <button py-click="plot_distribution">Plot Distribution</button>
+    <button py-click="generate_random">Generate Random Sample</button>
+</div>
+
+<!-- Output -->
+<div id="plot"></div>
+<p>Random Sample: <span id="sample"></span></p>
 
 
 
