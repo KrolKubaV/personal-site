@@ -46,9 +46,11 @@ extra_javascript:
 
 nav:
   - Home: index.md
+  - Mathematics of Gambling and Casino Games:
+      - Resources: betting/resources.mb
+      - BlackJack:
+          - Start: betting/BlackJack/start.md
   - Puzzles:
-      - Puzzle 1: puzzles/puzzle1.md
-      - Puzzle 2: puzzles/puzzle2.md
-  - Notebooks:
-      - Example: notebooks/example.ipynb
-  - About: about.md
+      - Project Euler: puzzles/project_euler.md
+      - Other: 
+          - Puzzle 1: puzzles/other/puzzle1.md
