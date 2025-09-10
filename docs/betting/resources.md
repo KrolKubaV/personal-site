@@ -1,5 +1,29 @@
 # Interactive Calculator
 
-Click the badge to launch the interactive calculator:
+<style>
+input, button {
+    padding: 0.5em;
+    margin: 0.2em;
+    font-family: inherit;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+button {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #45a049;
+}
+</style>
 
-[![Launch Calculator](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/KrolKubaV/personal-site.git/HEAD?urlpath=%2Fdoc%2Ftree%2Fdocs%5Cbetting%5Ccalculator.ipynb)
+<py-script>
+# Your Python code here
+</py-script>
+
+<input id="num1" type="number" placeholder="Enter first number">
+<input id="num2" type="number" placeholder="Enter second number">
+<button py-click="calculate">Add</button>
+
+<p>Result: <span id="result"></span></p>
