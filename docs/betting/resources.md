@@ -1,3 +1,3 @@
-# Interactive Calculator (Jupyter)
+# Interactive Calculator
 
-[![Launch Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/KrolKubaV/personal-site/main?filepath=docs/notebooks/calculator.ipynb)
+<iframe src="https://your-dash-app-url" width="100%" height="500px"></iframe>
