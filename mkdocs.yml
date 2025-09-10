@@ -1,4 +1,6 @@
-site_name: J. Adamek personal website
+site_name: Jakub Adamek
+site_url: https://KrolKubaV.github.io/personal-site
+
 theme:
   name: material
   features:
@@ -6,9 +8,28 @@ theme:
     - navigation.sections
     - search.highlight
     - search.suggest
+    - content.code.copy         # adds "copy" button to code blocks
+  palette:
+    - scheme: default          # light mode
+      primary: 'indigo'
+      accent: 'orange'
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to dark mode
+    - scheme: slate            # dark mode
+      primary: 'indigo'
+      accent: 'orange'
+      toggle:
+        icon: material/lightbulb
+        name: Switch to light mode
+  font:
+    text: 'Roboto'
+    code: 'Fira Code'
+
 plugins:
   - search
   - mkdocs-jupyter
+
 markdown_extensions:
   - admonition
   - codehilite
@@ -16,6 +37,10 @@ markdown_extensions:
       permalink: true
   - pymdownx.arithmatex:
       generic: true
+  - pymdownx.superfences    # advanced code block styling
+  - pymdownx.betterem       # improved emphasis handling
+  - pymdownx.tilde          # support for strikethrough
+
 extra_javascript:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
@@ -26,3 +51,4 @@ nav:
       - Puzzle 2: puzzles/puzzle2.md
   - Notebooks:
       - Example: notebooks/example.ipynb
+  - About: about.md
